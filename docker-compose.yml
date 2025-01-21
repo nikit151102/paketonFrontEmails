@@ -1,17 +1,8 @@
 services:
-  frontend:
-    build:
-      context: ./
-      dockerfile: Dockerfile-frontend
-    ports:
-      - 8020:8020
-    volumes:
-      - /app
-      - /app/node_modules
-    networks:
-      - constructionAutomation
-    
-  
-networks:
-  paketon:
-    external: true
+    smtp-project:
+        image: ${REGISTRY}/${SERVICE_SMTP}/python:${IMAGE_TAG}
+        restart: always
+        volumes:
+            - .:/app
+        ports:
+            - "${PYTHON_PORT}:8000"
